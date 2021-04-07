@@ -2,14 +2,26 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="TheBatman.css">
+    <link rel="icon" href="./logo.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+        integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+        crossorigin="anonymous"></script>
     <title>The Batman</title>
 </head>
 <body>
     <header>
         <a href="#" class="logo"><img src="logo.png" alt=""></a>
-    <div class="toggle"><a href="../../user.html"><img src="toggle.png" alt=""></a></div>
+        <div class="toggle">
+            <a href="./../index.html" data-toggle="tooltip" title="Home"><img src="toggle.png" alt="">
+            </a>
+        </div>
     </header>
     <div class="banner">
         <div class="content">
@@ -23,21 +35,49 @@
                 second year of fighting crime and follows him as he explores Gotham City's corruption and faces the Riddler, 
                 a riddle-obsessed serial killer.....
             </p>
-            <a href="#" class="play" onclick="toggle();"><img src="play.png" alt="">watch trailer</a>
+            <a href="https://www.youtube.com/watch?v=-FZ-pPFAjYY" class="play" target="_blank"><img src="play.png" alt="">Watch
+                Video</a>
         </div>
     </div>
-    <div class="trailer">
-        <video src="TheBatman.mp4" controls="true"></video>
-        <img src="close.png" alt="" class="close" onclick="toggle();">
+    
+    <div class="card-columns px-5 pb-3">
+        <div class="card embed-responsive embed-responsive-16by9">
+            <iframe width="560" class="embed-responsive-item" height="315" src="https://www.youtube.com/embed/nW948Va-l10"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+        <div class="card embed-responsive embed-responsive-16by9">
+            <iframe width="560" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/IWBsDaFWyTE"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+        <div class="card embed-responsive embed-responsive-16by9">
+            <iframe width="560" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/UBhlqe2OTt4"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+        <div class="card embed-responsive embed-responsive-16by9">
+            <iframe width="560" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/vM-Bja2Gy04"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+        <div class="card embed-responsive embed-responsive-16by9">
+            <iframe width="560" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/N73oTiIIJe0"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+        <div class="card embed-responsive embed-responsive-16by9">
+            <iframe width="560" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/FYYZGQZKXUg"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
     </div>
-    <script>
-        function toggle(){
-        var trailer=document.querySelector('.trailer');
-        let video=document.querySelector('.video');
-        trailer.classList.toggle('active');
-        video.currentTime = 0;
-        video.pause();
-    }
-    </script>
+
 </body>
 </html>
