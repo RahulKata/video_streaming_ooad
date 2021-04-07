@@ -71,9 +71,11 @@ body {
 }
 
 .sidebar-nav > .sidebar-brand {
-  font-size: 1.2rem;
-  background: rgba(52, 58, 64, 0.1);
+  font-size: 1.3rem;
+  background: rgba(255, 255, 255, 0.349);
   height: 80px;
+  font-weight: 500;
+  font-family: "Courier New", Courier, monospace;
   line-height: 50px;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -84,7 +86,7 @@ body {
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
-  color: #fff;
+  color: rgb(255, 210, 210);
   background: none;
 }
 
@@ -105,10 +107,10 @@ body {
   padding-bottom: 8rem;
   background: linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.1) 0%,
+      rgba(0, 0, 0, 0.671) 0%,
       rgba(255, 255, 255, 0.1) 100%
     ),
-    url("Images/BackgroundImages/BlackWidow.jpg");
+    url("./UpcomingMovieImages/BlackWidow.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -120,11 +122,12 @@ body {
   margin: 0;
   padding: 0;
   color: #fff;
+  letter-spacing: 5px;
+  font-family: "Monda", sans-serif;
 }
 
 .masthead .mb-5 em {
   color: #fff;
-  text-transform: uppercase;
 }
 @media (min-width: 992px) {
   .masthead {
@@ -138,13 +141,14 @@ body {
 .btn-xl {
   padding: 1.25rem 2.5rem;
   text-transform: uppercase;
-  background-color: #d35d6e;
-  border: none;
+  background-color: #ff00267e;
+  border: 0.2em ridge white;
   color: #fff;
 }
 
 .btn-xl:hover {
-  background-color: #fd3a69;
+  background-color: #ff0026cb;
+  border: 0.2em ridge black;
   color: #000;
 }
 h1,
