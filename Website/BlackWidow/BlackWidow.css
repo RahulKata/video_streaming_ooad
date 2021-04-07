@@ -23,7 +23,9 @@ header .logo {
 header .toggle {
   max-width: 60px;
   cursor: pointer;
+  margin-left: auto;
 }
+
 .banner {
   position: relative;
   width: 100%;
@@ -133,4 +135,8 @@ header .toggle {
     max-width: 90%;
     outline: none;
   }
+}
+
+.card-columns {
+  background-color: black;
 }
