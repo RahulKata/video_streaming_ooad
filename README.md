@@ -9,7 +9,7 @@ This project is done by:
 |------------|---------------|-------|
 | Rahul Kata | PES1201802018 | 6 I   |
 | Aditya D   | PES120180     | 6 I   |
-| Manohar R  | PES1201800305   | 6 I   |
+| Manohar D  | PES1201800305   | 6 I   |
 <br>
 The activity diagram for the whole application is: 
 
