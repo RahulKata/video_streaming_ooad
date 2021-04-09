@@ -218,7 +218,7 @@ h6 {
   height: 50px;
   text-align: center;
   color: #fff;
-  background: rgba(52, 58, 64, 0.5);
+  background: rgba(52, 58, 64, 0.842);
   line-height: 45px;
   display: none;
 }
@@ -232,4 +232,6 @@ h6 {
 }
 .scroll-to-top i {
   font-weight: 800;
+  padding-top: 10px;
+  color: red;
 }
