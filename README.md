@@ -5,11 +5,11 @@ The SRS document has also been uploaded to this repo.
 
 This project is done by:
 
-| Name       | SRN           | Class |
-|------------|---------------|-------|
-| Rahul Kata | PES1201802018 | 6 I   |
-| Aditya D   | PES120180     | 6 I   |
-| Manohar D  | PES1201800305   | 6 I   |
+| Name       | SRN           | Class | Use Case                                                                                      |
+|------------|---------------|-------|-----------------------------------------------------------------------------------------------|
+| Rahul Kata | PES1201802018 | 6 I   | Recommend similar videos and list top videos on home screen(recent, most liked, most viewed). |
+| Aditya D   | PES120180     | 6 I   | Manage Videos and video players controls with share option.                                   |
+| Manohar D  | PES1201800305     | 6 I   | Manage Playlist and search videos                                                             |
 <br>
 The activity diagram for the whole application is: 
 
