@@ -1,0 +1,127 @@
+<?php
+ include 'header.htm';
+?>
+  
+<script>
+var currplayid = '';
+var videotitl = '';
+jQuery(document).ready(function () {  
+    var API_KEY = "AIzaSyACWRr0aloPLtcbyGb7PLns1W6rYTiXCUI"  //in case quota exceeded create new project and change key
+    var video = '';  
+    var search;
+    jQuery("form").submit(function (event) {  
+        event.preventDefault();  
+		search = $("#search").val();
+        videoSearch(API_KEY, search, 5);  //dont't add more max result , it execeed limit of quota
+		
+    });  
+   
+    function videoSearch(key, search, maxResults) {  
+        var prepand = "learn";  
+        jQuery("#videos").empty();  
+  
+        jQuery.get("https://www.googleapis.com/youtube/v3/search?key=" + key + "&type=video&part=snippet&maxResults=" + maxResults + "&q=" + search,
+            function (data) {  
+                console.log(data);  
+                data.items.forEach(item => {  
+                    video = ` <div class="col-md-4"><div class="single-video"><iframe width="60%" src="https://www.youtube.com/embed/${item.id.videoId}?controls=0" frameborder="1" allowfullscreen >  </iframe><div class="videotitl">${item.snippet.title}</div><p><a href="javascript:void(0);" data-id="${item.id.videoId}" class="fav-add" onclick="favadd($(this))" style="color: #8d96fd;">&#187; add to playlist</a></p></div></div> `;  
+                    console.log(video);  
+                    jQuery("#videos").append(video);  
+  
+                });  
+            })  
+    } 
+	
+	$('.playlisname').click(function(){
+		 
+		 var currntlistnam = $(this).text().slice(2);
+		 
+		$.post('playlist-save-delete.php', {
+		currplayid:currplayid,currntlistnam:currntlistnam,videotitl:videotitl
+		}, function(data) {
+			$('.frontdiv').hide();
+			alert(data);
+		});
+	});
+ 
+});
+function creatnewwatchlater()
+{
+ 
+	$.post('playlist-save-delete.php', {
+		watchcurrplayid:currplayid,watchvideotitl:videotitl
+		}, function(data) {
+			 alert(data);
+			 window.location.reload();
+
+	});
+	
+}
+function favadd(abcd){
+	
+	currplayid = $(abcd).attr('data-id');
+	videotitl = $(abcd).closest('div').find('.videotitl').text();
+	 if($('.refrencloginname').length > 0)
+	 {
+		$('.viewavailblplaylist').show();
+	 }
+	 else
+	 {
+		alert('Please Login to Continue..');
+		location.href='login.htm';
+	 }
+	 
+} 
+ 
+</script>
+<body>   
+     
+   <div class="container" style="padding:2%">  
+   <form id="form">   
+      <p>  
+        Enter to Search <input type="text" class="form-control" id="search">
+	  </p>	
+      <p>
+         <input type="submit" class="btn" value="search" style="padding:2%">   
+      </p> 
+   </form>   
+   <div class="row">  
+      <div class="col-md-12">  
+         <div id="videos"></div>   
+      </div>   
+   </div>  
+</div> 
+ <div class="frontdiv viewavailblplaylist">
+	<div class="frontcontent" style="width:85%">
+	
+	<p align="right" style="font-size:16px" onclick="$(this).closest('.frontdiv').hide()">&#x2716;</p>
+	<h4> - Save to - </h4>
+	 <p style="color:blue; cursor:pointer;border-bottom:1px solid #e4e4e4" onclick="creatnewwatchlater()">&#187; Watch Later</p>
+	 <div style="color:blue; cursor:pointer; float:left; width: 50%; padding: 2%;" onclick="$('.createnewplylis').show();$('.availbleplaylist').hide(); $(this).css('background', 'aliceblue');$(this).next().css('background', 'white')">&#187; Create New Playlist
+	 </div>
+	 <div style="color:blue; cursor:pointer; float:left; width: 50%; padding: 2%;" onclick="$('.createnewplylis').hide();$('.availbleplaylist').show(); $(this).css('background','aliceblue'); $(this).prev().css('background', 'white')">&#187; Add to existing playlist</div>
+	 <div style="clear:both"></div>
+	 <div class="createnewplylis" style="display:none;">
+		  <br/>
+		  Enter playlist Name
+		  <input type="text" id="playslitnameinput" style="width:80%"/>
+			<input type="button" value="save" onclick="savenewplaylist()" style="padding:2%"/>
+		 
+	 
+	 </div>
+	 <div class="availbleplaylist" style="display:none;"> 	
+	  
+	 <?php
+		$q = $con->query("SELECT playlistid, playlistname FROM playlist GROUP BY(playlistname)");
+		
+		while($p = $q->fetch())
+		{
+			echo '<p style="color: #d85d5d; font-size: 15px; cursor:pointer" data-playlistid="'.$p[0].'" class="playlisname">&#187; '.$p[1].'</p>';
+		}
+	 ?>
+     </div>	 
+	
+	</div>
+ </div>
+</body>   
+</html> 

@@ -1,0 +1,8 @@
+#force to https below three line
+RewriteEngine on
+RewriteCond     %{SERVER_PORT} ^80$
+RewriteRule     ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R]
+
+#handle .php and .htm
+
+AddType application/x-httpd-php .php .htm .html

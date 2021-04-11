@@ -1,0 +1,52 @@
+<?php
+ 
+include 'header.htm';
+if(isset($_SESSION['userloginid']))
+{
+	echo '<script>location.href="'.$pathisfrom.'question"; </script>';
+}
+ 
+
+?>
+
+
+<div style="position:relative">
+
+
+	<div class="middlecolum">
+		<?php
+		if(!isset($_SESSION['userloginid']))
+		{
+			echo '
+			<div style="padding:2%; width:90%">
+			<p>Already Register <a href="login.htm" style="color:#80b4e3">&#187; Log In</a> </p>
+						 
+			<form method="post" action="register-baknd.php">
+			<div class="inputelement">
+				<div>
+					<label>User Name</label>
+					<input type="text" width="65%" name="signupusername" required />
+				</div>
+				 
+				<div>
+					<label>Password</label>
+					<input type="password" width="65%" name="signuppassword" required /> 
+				</div> 
+			</div>
+			<input type="submit" value="Register" style="padding:1%"/>
+			</form>
+			</div>
+			';
+			
+  
+		}
+		 
+
+		?>
+ 			
+ 	</div>
+ 
+	 <div style="clear:both"></div>
+</div>
+
+ 

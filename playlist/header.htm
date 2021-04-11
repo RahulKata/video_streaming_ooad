@@ -1,0 +1,97 @@
+<?php require_once('connection.php'); //this is also requred on discussion page  ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Youtube Sample</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<script src="script/jquery.js"></script>
+<script src="script/script.js"></script>
+<link rel="stylesheet" type="text/css" href="style/style.css">
+ 
+<link rel="icon" type="image/png" href="images/logo.png">
+  
+</head>
+<body>
+<?php
+if(isset($_SESSION['alertmessage']) && $_SESSION['alertmessage'] !='')
+{
+  echo '<script>alert("'.$_SESSION['alertmessage'].'");</script>';
+  $_SESSION['alertmessage'] = '';  //one time alert if any from php else empty session
+}
+
+$ifalredylogin = '';
+
+if(empty($_SESSION['userloginid']))
+{
+	$ifalredylogin = 'expired';
+}
+else
+{
+	$ifalredylogin = 'active';
+	'';
+}
+$loginheader = '';
+ if($ifalredylogin == 'expired') {
+		$loginheader .= '<input type="button" value="Log In" style="padding: 12px;" onclick=location.href="login.htm" />';
+ }
+else
+{ 
+	$q = $con->prepare("SELECT username, password FROM userlogin WHERE username=?");
+	$q->execute([$_SESSION['userloginid']]);
+	if($s = $q->fetch())
+	{
+		$bHasLink = strpos($_SESSION['profilpho'], 'http') !== false || strpos($_SESSION['profilpho'], 'www.') !== false;
+
+		if($bHasLink !='')
+		{
+			$imgsr = $_SESSION['profilpho'];
+		}
+		else
+		{
+			$imgsr = $_SESSION['profilpho'];
+		}	
+		$loginheader .= '<div class="notificationbox">
+				  
+				  <img src="'.$imgsr.'" class="dropbtn" onclick="myfunction($(this))" style="width: 35px; margin-top: 10px; border-radius:50%" alt="profile photo"/>
+				  
+				  <div class="notificationbox-content" style="right:50%">
+					<a href="#" style="border-bottom:1px solid #eaeaea; font-size:12px; background:#fefefe" class="refrencloginname">'.$s[0].'</a>
+					<a href="#" style="border-top:1px solid #eaeaea;" onclick=location.href="view-playlist.htm">My Playlist</a> 
+					<a href="hello.htm" onclick="logooutme()">Log Out</a>
+				  </div>
+				 </div>
+			 '; 
+			 
+	}
+}
+
+?>
+
+ 
+
+<div class="headerdiv">
+	<!-- **for short screen** -->
+	<table style="width:100%;vertical-align:top; text-align:center" class="tablewithoutpaddin">
+		<tr>
+		<td style="width:20%;text-align:left;vertical-align:bottom">
+		<img src="images/samplelogo.jpg" style="width:93px;cursor:pointer" alt="logo" onclick="location.href='hello.htm'">
+		</td>
+		<td style="width:20%; text-align:center;font-size: 18px;">
+		<a href="hello.htm" style="color:skyblue;">Home</a>
+		</td>
+		<td style="width:20%"><!--<div style="position:relative;box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.01), 0 6px 20px 0 rgba(0, 0, 0, 0.1);" class="smallscreenshowsearchbox">
+		<input type="text" class="searchpost" placeholder="type to search and enter" style="border: 1px solid #d8d8d8; border-radius: 7px;"/>
+		<span style="position: absolute; right: 10px; top: 10px; font-size: 20px;" onclick="searchin()">&#128269;</span>
+		</div>--></td>
+		<td style="width:40%"> &nbsp;<?php echo $loginheader; ?>  </td>
+		</tr>
+	</table>
+	 
+	  
+</div>
+<!--header div end-->
+
+<div style="clear:both"></div>
+
+ 

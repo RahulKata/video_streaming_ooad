@@ -1,0 +1,82 @@
+<?php
+include 'header.htm';
+if(!isset($_SESSION['userloginid']))
+{
+	echo '<script>alert("You are not Login"); location.href="login.htm"; </script>';
+
+}
+?>
+
+<div style="position:relative">
+	<div class="leftpanel">
+	<p style="padding:10px; border:1px solid #ffffff; cursor:pointer" onclick="$('.watchlaterdiv').show();$('.playlistdiv').hide();$('.editplaylistdiv').hide()">&#187; Watch later</p>
+	<p style="padding:10px; border:1px solid #ffffff; cursor:pointer" onclick="$('.playlistdiv').show(); $('.watchlaterdiv').hide();$('.editplaylistdiv').hide()">&#187; Created Playlist</p>
+	<p style="padding:10px; border:1px solid #ffffff; cursor:pointer" onclick="$('.editplaylistdiv').show(); $('.watchlaterdiv').hide();$('.playlistdiv').hide()">&#187; Edit Playlist</p>
+	</div>
+	<div style="padding:2%" class="rightpanel">
+	<div class="editplaylistdiv" style="display:none">
+		<p>Select Playlist to edit or delete &nbsp;
+		<select class="selectplaylistidtoedit">
+		<?php
+			$loginid = $_SESSION['userloginid'];
+			$a = $con->query("SELECT playlistid,playlistname,createdby FROM playlist where createdby='$loginid'");
+			while($x = $a->fetch())
+			{
+				echo '<option value="'.$x[0].'">'.$x[1].'</option>';
+			}
+		?>	
+		</select>
+		<p>New name of Playlist <input type="text" class="updateplaylistinput"/></p>
+		<input type="button" value="Update" style="padding:1%" onclick="updateplaylistnam()"/>
+		&nbsp;&nbsp;&nbsp;<input type="button" value="Delete" style="padding:1%" onclick="deleteplaylistnam()"/>
+		</p>
+	</div>
+	<div class="watchlaterdiv" style="display:none">
+		<p>Watch later</p>
+		<?php
+			$q = $con->query("SELECT watchtoen,watchtitle,watchby FROM watchlater where watchby='$loginid'");
+			$i = 1;
+			echo '<table cellpadding="5" style="border-collapse:collapse;" cellspacing="5" class="smallview"><tr>';
+			while($a = $q->fetch())
+			{
+				if ($i % 3 === 0) {
+					echo '</tr><tr>';
+				}
+				
+				echo '<td width="50%">
+					<iframe width="60%" src="https://www.youtube.com/embed/'.$a[0].'?controls=0" allowfullscreen >  </iframe>
+					<p style="color: #d85d5d; font-size: 15px;" data-viewvideoid="'.$a[0].'" class="viewlistvideos">'.$a[1].'</p>
+					</td>
+					 '; 
+				$i++;
+			}
+			echo '</tr></table>';
+		?>	
+
+	</div>
+	<div  class="playlistdiv" style="display:none">
+		<p>Created Playlist</p>
+		<?php
+			
+			$q = $con->query("SELECT playlistid,playlistname FROM playlist where createdby='$loginid'");
+			$i = 1;
+			echo '<table border="1" bordercolor="#d1d1d1" cellpadding="5" style="border-collapse:collapse;" cellspacing="5"><tr>';
+			while($a = $q->fetch())
+			{
+				if ($i % 3 === 0) {
+					echo '</tr><tr>';
+				}
+				
+				echo '<td style="cursor:pointer" data-playlistid="'.$a[0].'" onclick="viewrelatedvideo($(this))"><img src="images/playlisticon.png" width="140px"/>
+				 <div style="background:#e4e4e4;padding:1%">'.$a[1].'</div></td>'; 
+				$i++;
+			}
+			echo '</tr></table>';
+			
+			
+			
+		 ?>	
+		 <div class="actualviewlistofvido" style="display:none"></div>
+	</div>
+	</div>
+</div>	
